@@ -20,7 +20,7 @@ export default function Home() {
   return (
     <div>
       Only visible to authorised users
-      <Button onClick={() => mutate}>Logout</Button>
+      <Button onClick={() => mutate()}>Logout</Button>
     </div>
   );
 }
