@@ -1,8 +1,18 @@
-db_login:
-	psql ${DB_URL}
+.PHONY: build run test tidy clean
 
-db_create_migration:
-	migrate create -ext sql -dir migrations -seq ${name}
+BINARY := bin/p2pparty
 
-db_migrate:
-	migrate -database ${DB_URL}?sslmode=disable -path migrations up
+build:
+	go build -o $(BINARY) ./cmd/p2pparty
+
+run: build
+	./$(BINARY)
+
+test:
+	go test ./...
+
+tidy:
+	go mod tidy
+
+clean:
+	rm -rf bin/
